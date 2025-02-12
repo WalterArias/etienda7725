@@ -23,6 +23,41 @@ const listartodos = async (req, res) => {
   }
 };
 
+//crear nuevo
+
+const nuevo = async (req, res) => {
+  // llega el objeto en el body del request
+
+  let datos = {
+    nombre: req.body.nombre,
+    descripcion: req.body.descripcion,
+    imagen: req.body.imagen,
+    marca: req.body.marca,
+    precio: req.body.precio,
+    existencia: req.body.existencia,
+    rating: req.body.rating,
+    numRevisiones: req.body.numRevisiones,
+    estaOfertado: req.body.estaOfertado,
+  };
+  try {
+    // instanncia del modelo Producto (collection)
+    const productoNuevo = new Producto(datos);
+    // salvamos en mongo
+    productoNuevo.save(); //escribe en mongo
+
+    return res.send({
+      estado: true,
+      mensaje: "insercion exitosa !",
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: `ha ocurrido un error en la consulta: ${error}`,
+    });
+  }
+};
+
 module.exports = {
   listartodos,
+  nuevo,
 };
