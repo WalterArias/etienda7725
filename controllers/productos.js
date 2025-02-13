@@ -43,7 +43,7 @@ const nuevo = async (req, res) => {
     // instanncia del modelo Producto (collection)
     const productoNuevo = new Producto(datos);
     // salvamos en mongo
-    productoNuevo.save(); //escribe en mongo
+    await productoNuevo.save(); //escribe en mongo
 
     return res.send({
       estado: true,
@@ -57,7 +57,100 @@ const nuevo = async (req, res) => {
   }
 };
 
+// buscarpor id o por otro parametro
+
+const buscarxid = async (req, res) => {
+  // recibimos el parametro por el cual debo buscar y eliminar
+  let id = req.params.id;
+
+  /*  if (req.params.id) {
+    let id = id;
+  } else {
+    console.log("le falta el parametro");
+  } */
+
+  try {
+    // logica de buscar y mostrar el resultado del query
+    //let consulta = await Producto.find({ id: req.params.id }).exec();
+    let consulta = await Producto.findById(id).exec();
+    return res.send({
+      estado: true,
+      mensaje: "insercion exitosa !",
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: "error, no fue posible encontrar el registro !",
+      consulta,
+    });
+  }
+};
+
+// actualizar de acuerdo al id del producto
+
+const actualizarxid = async (req, res) => {
+  //recibe el parametro de la consulta
+
+  let id = req.params.id;
+
+  //payload que viene en el body :: los datos que manda el formulario
+  let datos = {
+    nombre: req.body.nombre,
+    descripcion: req.body.descripcion,
+    imagen: req.body.imagen,
+    marca: req.body.marca,
+    precio: req.body.precio,
+    existencia: req.body.existencia,
+    rating: req.body.rating,
+    numRevisiones: req.body.numRevisiones,
+    estaOfertado: req.body.estaOfertado,
+  };
+
+  try {
+    let consulta = await Producto.findByIdAndUpdate(id, datos).exec();
+    return res.send({
+      estado: true,
+      mensaje: "documento creado !",
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: "ocurrió un error en la insercion",
+    });
+  }
+};
+
+//borrar de acuerdo al id  :::: RECUERDE QUE ESTE ES UN BORRADO DIDACTICO - NO LO USE EN EL MUNDO REAL
+
+const borrarxid = async (req, res) => {
+  //recibimos el parametro
+  let id = req.params.id;
+  console.log(id);
+
+  try {
+    let consulta = await Producto.findOneAndDelete({ _id: id }).exec();
+    //let consulta = await Producto.findByIdAndDelete(id).exec();
+    console.log(consulta);
+    return res.send({
+      estado: true,
+      mensaje: "borrado exitosa !",
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: "error !",
+      error,
+    });
+  }
+};
+
 module.exports = {
   listartodos,
   nuevo,
+  buscarxid,
+  borrarxid,
+  actualizarxid,
 };
