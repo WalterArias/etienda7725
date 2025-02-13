@@ -4,15 +4,14 @@ const express = require("express");
 const router = express.Router();
 
 // instanciamos el controlador correspondiente
-const productoCtr = require("../controllers/productos");
+const usuariosCtr = require("../controllers/usuarios");
 
 // rutas que entregara el modulo producto
 
-router.get("/producto/listartodos", productoCtr.listartodos);
-
-router.post("/producto/nuevo", productoCtr.nuevo);
+router.get("/usuarios/listartodos", usuariosCtr.listartodos);
+/* router.post("/producto/nuevo", productoCtr.nuevo);
 router.get("/producto/buscarxid/:id", productoCtr.buscarxid);
 router.delete("/producto/borrarxid/:id", productoCtr.borrarxid);
-router.put("/producto/actualizarxid/:id", productoCtr.actualizarxid);
+router.put("/producto/actualizarxid/:id", productoCtr.actualizarxid); */
 
 module.exports = router;
