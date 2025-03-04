@@ -38,6 +38,10 @@ const usuarioSchema = Schema(
       type: String,
       default: "",
     },
+    imagen: {
+      type: String,
+      default: "default.png",
+    },
   },
   { collection: "usuarios" }
 );

@@ -2,20 +2,26 @@
 
 const express = require("express");
 const router = express.Router();
+// middleware: util para manejar los request en body del formulario (files)
 const multer = require("multer");
 
 // instanciamos el controlador correspondiente
 const usuariosCtr = require("../controllers/usuarios");
 
+// configurar emulacion del disco duro local
+
 const storage = multer.diskStorage({
+  //ruta de destino para almacenar los archivos
   destination: (req, file, cb) => {
     cb(null, "./uploads/usuarios/");
   },
+  //estructura para denominar los archivos
   filename: (req, file, cb) => {
+    //armamos el nombre del archivo
     cb(null, Date.now() + "-" + file.originalname);
   },
 });
-
+// instancia del multer con la configuracion de almacenamiento y nombre de archivo
 const uploads = multer({ storage });
 
 // rutas que entregara el modulo producto

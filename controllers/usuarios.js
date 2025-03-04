@@ -2,7 +2,9 @@
 let bcrypt = require("bcryptjs");
 let Usuarios = require("../models/usuarios");
 const jwt = require("jsonwebtoken");
+// node nativo : fs : filessystem instanciamos para manipular el sistema de archivos del servidor
 const fs = require("fs");
+// modulo nativo de node util para manejar las rutas
 const path = require("path");
 
 const listartodos = async (req, res) => {
@@ -139,7 +141,7 @@ const subirImagen = async (req, res) => {
         mensaje: "No se ha subido ninguna imagen",
       });
     }
-
+    // validar la extension de la imagen
     const { originalname, filename, path } = req.file;
     const extension = originalname.split(".").pop().toLowerCase();
     // Validar extensión de la imagen
