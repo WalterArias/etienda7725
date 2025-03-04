@@ -1,0 +1,11 @@
+{
+  "source": {
+    "include": ["./controllers"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "exclude": "node_modules/|docs"
+  },
+  "plugin": [],
+  "opts": {
+    "destination": "docs/"
+  }
+}
