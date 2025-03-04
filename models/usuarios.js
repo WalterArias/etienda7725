@@ -46,4 +46,7 @@ const usuarioSchema = Schema(
   { collection: "usuarios" }
 );
 
-module.exports = model("Usuario", usuarioSchema);
+//cambio en el estilo de exportacion
+
+const Usuario = new model("Usuario", usuarioSchema);
+module.exports = Usuario;

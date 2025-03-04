@@ -62,4 +62,5 @@ const productoSchema = Schema(
   { collection: "producto" }
 );
 
-module.exports = model("Producto", productoSchema);
+const Producto = new model("Producto", usuarioSchema);
+module.exports = Producto;
