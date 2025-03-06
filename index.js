@@ -14,11 +14,13 @@ conexion();
 
 const productoRta = require("./routes/productos");
 const usuariosRta = require("./routes/usuarios");
+const categoriasRta = require("./routes/categorias");
 
 // usamos las rutas
 
 app.use("/api", productoRta);
 app.use("/api", usuariosRta);
+app.use("/api", categoriasRta);
 
 app.listen(4000, () => {
   console.log(`listen ${4000}`);
