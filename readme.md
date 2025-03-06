@@ -18,3 +18,14 @@ https://www.npmjs.com/package/jsonwebtoken
 
 - mongodb : https://www.mongodb.com/docs/manual/reference/method/
 - mongoose(libreria que interactua entre node js y mongodb):https://mongoosejs.com/docs/guide.html#methods
+
+# notas para desarrolladores linux
+
+-iniciar el service de mongo en linux:
+sudo systemctl start mongod
+-recarga
+sudo systemctl daemon-reload
+-ver el estado
+sudo systemctl status mongod
+-parar el servicio
+sudo systemctl stop mongod
